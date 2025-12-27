@@ -6,31 +6,47 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100/50">
+      <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <img src="/favicon.svg" alt="SocialWay.ai" className="w-8 h-8" />
-            <span className="text-xl font-bold gradient-text">Socialway AI</span>
+          {/* Logo - matching hub.socialway.ai exactly */}
+          <Link to="/" className="flex items-center gap-3">
+            <span
+              className="text-2xl font-bold"
+              style={{
+                background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(271 81% 56%))',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              Socialway AI
+            </span>
+            <img
+              src="/socialway-icon.svg"
+              alt=""
+              className="w-8 h-8"
+              style={{ borderRadius: '30%' }}
+            />
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <Link to="/about" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
+            <Link to="/about" className="text-gray-500 hover:text-gray-900 font-medium transition-colors text-sm">
               About
             </Link>
-            <Link to="/blog" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
+            <Link to="/blog" className="text-gray-500 hover:text-gray-900 font-medium transition-colors text-sm">
               Blog
-            </Link>
-            <Link to="/privacy" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
-              Privacy
             </Link>
             <a
               href="https://hub.socialway.ai"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full gradient-bg text-white font-semibold hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-white font-medium text-sm transition-all hover:shadow-lg hover:scale-[1.02]"
+              style={{
+                background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(271 81% 56%))',
+                boxShadow: '0 4px 14px rgba(99, 102, 241, 0.3)',
+              }}
             >
-              Start Free Trial
+              Get Started
             </a>
           </div>
 
@@ -61,18 +77,14 @@ export function Header() {
               >
                 Blog
               </Link>
-              <Link
-                to="/privacy"
-                className="text-gray-600 hover:text-gray-900 font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Privacy
-              </Link>
               <a
                 href="https://hub.socialway.ai"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full gradient-bg text-white font-semibold"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-white font-semibold"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(271 81% 56%))',
+                }}
               >
-                Start Free Trial
+                Get Started
               </a>
             </div>
           </div>
