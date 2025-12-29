@@ -25,7 +25,12 @@ import {
   Palette,
   Utensils,
   Heart,
-  Plane
+  Plane,
+  Play,
+  Star,
+  Image,
+  Layers,
+  Newspaper
 } from 'lucide-react';
 
 // Platform data
@@ -98,85 +103,221 @@ const tokenPacks = [
 export function Home() {
   return (
     <div className="bg-white">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Hero Section - Compact */}
+      <section className="relative pt-24 pb-16 lg:pt-28 lg:pb-20 overflow-hidden">
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50" />
 
         {/* Decorative elements */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-200/30 rounded-full blur-3xl" />
+        <div className="absolute top-10 left-10 w-64 h-64 bg-blue-200/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 right-10 w-72 h-72 bg-purple-200/20 rounded-full blur-3xl" />
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
-          <div className="text-center">
-            {/* Logo */}
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <h1
-                className="text-5xl sm:text-6xl lg:text-7xl font-bold"
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Text Content - Centered */}
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              From Ideas to Posts{' '}
+              <span
                 style={{
-                  background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(271 81% 56%))',
+                  background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
                 }}
               >
-                Socialway AI
-              </h1>
-              <img
-                src="/socialway-icon.svg"
-                alt=""
-                className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20"
-                style={{ borderRadius: '30%' }}
-              />
-            </div>
+                in Minutes
+              </span>
+            </h1>
 
-            {/* Tagline */}
-            <p className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-800 mb-4">
-              From Ideas to Posts in Minutes
-            </p>
-
-            <p className="text-lg sm:text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-              Transform your social media presence with AI-powered content creation.
-              Just describe what you need, and watch your posts come to life.
+            <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
+              Transform your social media with AI-powered content creation. Describe what you need, and watch professional posts come to life.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
               <a
                 href="https://hub.socialway.ai"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-white font-semibold text-lg transition-all hover:scale-[1.02] hover:shadow-xl"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-white font-semibold transition-all hover:scale-[1.02] hover:shadow-xl"
                 style={{
-                  background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(271 81% 56%))',
+                  background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
                   boxShadow: '0 4px 20px rgba(99, 102, 241, 0.35)',
                 }}
               >
+                <Sparkles size={18} />
                 Start Creating Free
-                <ArrowRight size={20} />
               </a>
               <a
-                href="#how-it-works"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-gray-300 text-gray-700 font-semibold text-lg hover:border-gray-400 hover:bg-gray-50 transition-all"
+                href="#see-it-action"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-gray-200 text-gray-700 font-semibold hover:border-gray-300 hover:bg-gray-50 transition-all"
               >
-                See How It Works
+                <Play size={16} className="fill-current" />
+                See It In Action
               </a>
             </div>
 
-            {/* Platform Icons */}
-            <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
-              <span className="text-sm text-gray-500">Publish to:</span>
+            {/* Platform Icons - Compact */}
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <span className="text-sm text-gray-400">Publish to:</span>
               {platforms.map(({ icon: Icon, name, color }) => (
-                <div key={name} className="flex items-center gap-2 text-gray-600">
-                  <Icon size={22} style={{ color }} />
-                  <span className="text-sm font-medium hidden sm:inline">{name}</span>
+                <div key={name} className="flex items-center gap-1.5" title={name}>
+                  <Icon size={18} style={{ color }} />
+                  <span className="text-xs font-medium text-gray-500 hidden sm:inline">{name}</span>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* App Preview - Side by Side Cards */}
+          <div className="relative max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-6 items-start">
+              {/* Main preview card */}
+              <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 transform hover:-translate-y-1 transition-transform duration-300">
+                <img
+                  src="/images/post-instagram-solar.png"
+                  alt="AI Generated Instagram Post Preview"
+                  className="w-full"
+                />
+                <div className="absolute top-3 right-3 bg-gradient-to-r from-green-400 to-emerald-500 text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5">
+                  <Sparkles size={12} />
+                  AI Generated
+                </div>
+              </div>
+
+              {/* Secondary preview card */}
+              <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 transform hover:-translate-y-1 transition-transform duration-300 hidden md:block">
+                <img
+                  src="/images/post-linkedin-energy.png"
+                  alt="AI Generated LinkedIn Post"
+                  className="w-full"
+                />
+                <div className="absolute top-3 left-3 bg-[#0A66C2] text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5">
+                  <Linkedin size={12} />
+                  LinkedIn
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* See It In Action - Real Examples */}
+      <section id="see-it-action" className="py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-4"
+              style={{ background: 'rgba(99, 102, 241, 0.1)', color: 'hsl(221 83% 53%)' }}
+            >
+              <Star size={16} />
+              Real Results
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              See What Our AI Creates
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Real posts generated by Socialway AI for real businesses. Professional content, stunning visuals, in under 60 seconds.
+            </p>
+          </div>
+
+          {/* Showcase Grid */}
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Energy Industry Post */}
+            <div className="group">
+              <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow">
+                <div className="p-4 border-b border-gray-100 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                    <Linkedin size={18} className="text-white" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-900 text-sm">LinkedIn Post</p>
+                    <p className="text-xs text-gray-500">Energy Industry</p>
+                  </div>
+                </div>
+                <img
+                  src="/images/post-linkedin-energy.png"
+                  alt="LinkedIn post for Energy company"
+                  className="w-full"
+                />
+              </div>
+              <div className="mt-4 text-center">
+                <span className="inline-flex items-center gap-2 text-sm text-gray-600">
+                  <Leaf size={16} className="text-green-500" />
+                  Renewable Energy
+                </span>
+              </div>
+            </div>
+
+            {/* Healthcare Industry Post */}
+            <div className="group lg:-mt-8">
+              <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow">
+                <div className="p-4 border-b border-gray-100 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 flex items-center justify-center">
+                    <Instagram size={18} className="text-white" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-900 text-sm">Instagram Post</p>
+                    <p className="text-xs text-gray-500">Healthcare Industry</p>
+                  </div>
+                </div>
+                <img
+                  src="/images/post-healthcare.png"
+                  alt="Instagram post for Healthcare provider"
+                  className="w-full"
+                />
+              </div>
+              <div className="mt-4 text-center">
+                <span className="inline-flex items-center gap-2 text-sm text-gray-600">
+                  <Stethoscope size={16} className="text-pink-500" />
+                  Healthcare
+                </span>
+              </div>
+            </div>
+
+            {/* Mobile Chat Interface */}
+            <div className="group">
+              <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow">
+                <div className="p-4 border-b border-gray-100 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 flex items-center justify-center">
+                    <MessageSquare size={18} className="text-white" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-900 text-sm">AI Chat Interface</p>
+                    <p className="text-xs text-gray-500">Mobile App</p>
+                  </div>
+                </div>
+                <img
+                  src="/images/mobile-chat.png"
+                  alt="Mobile AI chat interface"
+                  className="w-full"
+                />
+              </div>
+              <div className="mt-4 text-center">
+                <span className="inline-flex items-center gap-2 text-sm text-gray-600">
+                  <Zap size={16} className="text-purple-500" />
+                  Research & Create
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center mt-12">
+            <a
+              href="https://hub.socialway.ai"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-medium transition-all hover:scale-[1.02]"
+              style={{
+                background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(271 81% 56%))',
+              }}
+            >
+              Try It Yourself - Free
+              <ArrowRight size={18} />
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-24 bg-gray-50">
+      <section id="how-it-works" className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -189,55 +330,97 @@ export function Home() {
 
           <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
             {/* Step 1 */}
-            <div className="text-center">
-              <div
-                className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6"
-                style={{ background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(271 81% 56%))' }}
-              >
-                <MessageSquare className="text-white" size={28} />
+            <div className="relative">
+              <div className="text-center">
+                <div
+                  className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+                  style={{ background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(271 81% 56%))' }}
+                >
+                  <MessageSquare className="text-white" size={32} />
+                </div>
+                <div className="absolute top-8 left-[60%] hidden md:block text-6xl font-bold text-gray-100">1</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Describe Your Idea</h3>
+                <p className="text-gray-600">
+                  "Write a LinkedIn post about our new solar installation project with an AI-generated image"
+                </p>
               </div>
-              <div className="text-sm font-semibold text-purple-600 mb-2">Step 1</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Describe Your Idea</h3>
-              <p className="text-gray-600">
-                Tell our AI what you want to create. "Write a LinkedIn post about our new product launch" - that's all it takes.
-              </p>
             </div>
 
             {/* Step 2 */}
-            <div className="text-center">
-              <div
-                className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6"
-                style={{ background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(271 81% 56%))' }}
-              >
-                <Eye className="text-white" size={28} />
+            <div className="relative">
+              <div className="text-center">
+                <div
+                  className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+                  style={{ background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(271 81% 56%))' }}
+                >
+                  <Eye className="text-white" size={32} />
+                </div>
+                <div className="absolute top-8 left-[60%] hidden md:block text-6xl font-bold text-gray-100">2</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Preview & Refine</h3>
+                <p className="text-gray-600">
+                  See your post exactly as it will appear. Ask for changes like "make it more professional" or "add statistics"
+                </p>
               </div>
-              <div className="text-sm font-semibold text-purple-600 mb-2">Step 2</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Preview & Refine</h3>
-              <p className="text-gray-600">
-                See your post exactly as it will appear. Make adjustments with simple commands like "make it more professional" or "add emojis."
-              </p>
             </div>
 
             {/* Step 3 */}
-            <div className="text-center">
-              <div
-                className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6"
-                style={{ background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(271 81% 56%))' }}
-              >
-                <Send className="text-white" size={28} />
+            <div className="relative">
+              <div className="text-center">
+                <div
+                  className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+                  style={{ background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(271 81% 56%))' }}
+                >
+                  <Send className="text-white" size={32} />
+                </div>
+                <div className="absolute top-8 left-[60%] hidden md:block text-6xl font-bold text-gray-100">3</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Publish or Schedule</h3>
+                <p className="text-gray-600">
+                  Post instantly to all your connected platforms or schedule for the perfect time. Track in your calendar.
+                </p>
               </div>
-              <div className="text-sm font-semibold text-purple-600 mb-2">Step 3</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Publish or Schedule</h3>
-              <p className="text-gray-600">
-                Post instantly to all your connected platforms or schedule for the perfect time. Track everything in your content calendar.
-              </p>
+            </div>
+          </div>
+
+          {/* Demo Preview */}
+          <div className="mt-16 bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 lg:p-12 shadow-2xl">
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              <div className="text-white">
+                <h3 className="text-2xl font-bold mb-4">Two-Panel Interface</h3>
+                <p className="text-gray-300 mb-6">
+                  Chat with AI on one side, see your post preview on the other. Make real-time edits and see changes instantly.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-3">
+                    <Check size={20} className="text-green-400" />
+                    <span>Platform-specific previews</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Check size={20} className="text-green-400" />
+                    <span>AI-generated images with your branding</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Check size={20} className="text-green-400" />
+                    <span>One-click edit requests</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="relative">
+                <img
+                  src="/images/post-instagram-solar.png"
+                  alt="Platform preview interface"
+                  className="rounded-xl shadow-2xl border border-gray-700"
+                />
+                <div className="absolute -bottom-4 -right-4 bg-white rounded-lg px-4 py-2 shadow-lg">
+                  <span className="text-sm font-medium text-gray-900">Ready to publish!</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-24">
+      <section className="py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div
@@ -275,41 +458,62 @@ export function Home() {
         </div>
       </section>
 
-      {/* Industries Section */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Built for Every Industry
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Our AI adapts to your industry's unique language, compliance requirements, and audience expectations.
-            </p>
-          </div>
+      {/* Industries Section with Visual Examples */}
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+                Built for Every Industry
+              </h2>
+              <p className="text-lg text-gray-600 mb-8">
+                Our AI adapts to your industry's unique language, compliance requirements, and audience expectations. From healthcare to hospitality, we've got you covered.
+              </p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-            {industries.map(({ icon: Icon, name, benefit }) => (
-              <div
-                key={name}
-                className="bg-white rounded-xl p-5 border border-gray-100 hover:border-purple-200 hover:shadow-md transition-all"
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <Icon size={20} className="text-purple-600" />
-                  <h3 className="font-semibold text-gray-900 text-sm">{name}</h3>
-                </div>
-                <p className="text-xs text-gray-500">{benefit}</p>
+              <div className="grid grid-cols-2 gap-4">
+                {industries.slice(0, 8).map(({ icon: Icon, name, benefit }) => (
+                  <div
+                    key={name}
+                    className="bg-gray-50 rounded-xl p-4 hover:bg-purple-50 hover:border-purple-200 border border-transparent transition-all"
+                  >
+                    <div className="flex items-center gap-3 mb-1">
+                      <Icon size={18} className="text-purple-600" />
+                      <h3 className="font-semibold text-gray-900 text-sm">{name}</h3>
+                    </div>
+                    <p className="text-xs text-gray-500 ml-7">{benefit}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
 
-          <p className="text-center text-gray-500 mt-8">
-            And many more industries supported through our comprehensive industry hierarchy system.
-          </p>
+              <p className="text-gray-500 mt-6 text-sm">
+                + Healthcare, Non-Profit, Travel & Tourism, and 40+ more industries
+              </p>
+            </div>
+
+            {/* Visual showcase */}
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-100 to-blue-100 rounded-3xl transform rotate-3"></div>
+              <div className="relative bg-white rounded-2xl shadow-xl p-6 transform -rotate-1 hover:rotate-0 transition-transform">
+                <img
+                  src="/images/post-healthcare.png"
+                  alt="Healthcare industry post example"
+                  className="rounded-xl w-full"
+                />
+                <div className="mt-4 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Stethoscope size={16} className="text-pink-500" />
+                    <span className="text-sm font-medium text-gray-700">Healthcare Example</span>
+                  </div>
+                  <span className="text-xs text-gray-500">Generated in 45 seconds</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* What You Can Create Section */}
-      <section className="py-24">
+      <section className="py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -322,15 +526,24 @@ export function Home() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: 'Text Posts', description: 'Engaging captions optimized for each platform', tokens: '1 token' },
-              { title: 'AI Images', description: 'Custom visuals generated to match your content', tokens: '3 tokens' },
-              { title: 'Carousels', description: 'Multi-slide posts for educational content', tokens: '10 tokens' },
-              { title: 'News Summaries', description: 'Industry news curated and summarized', tokens: '2 tokens' },
+              { title: 'Text Posts', description: 'Engaging captions optimized for each platform', tokens: '1 token', Icon: FileText },
+              { title: 'AI Images', description: 'Custom visuals generated to match your content', tokens: '3 tokens', Icon: Image },
+              { title: 'Carousels', description: 'Multi-slide posts for educational content', tokens: '10 tokens', Icon: Layers },
+              { title: 'News Summaries', description: 'Industry news curated and summarized', tokens: '2 tokens', Icon: Newspaper },
             ].map((item) => (
-              <div key={item.title} className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100">
+              <div key={item.title} className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-shadow">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                  style={{ background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1))' }}
+                >
+                  <item.Icon
+                    size={24}
+                    className="text-blue-500"
+                  />
+                </div>
                 <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
                 <p className="text-gray-600 text-sm mb-3">{item.description}</p>
-                <span className="text-xs font-medium text-purple-600 bg-purple-50 px-2 py-1 rounded-full">
+                <span className="text-xs font-medium text-purple-600 bg-purple-50 px-3 py-1 rounded-full">
                   {item.tokens}
                 </span>
               </div>
@@ -340,7 +553,7 @@ export function Home() {
       </section>
 
       {/* Customization Section */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -371,23 +584,23 @@ export function Home() {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-100">
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 shadow-xl">
               <div className="space-y-4">
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                  <span className="text-sm font-medium text-gray-700">Tone:</span>
-                  <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">Empathetic</span>
+                <div className="flex items-center gap-3 p-3 bg-white/10 backdrop-blur rounded-lg">
+                  <span className="text-sm font-medium text-gray-300">Tone:</span>
+                  <span className="px-3 py-1 bg-purple-500 text-white rounded-full text-sm font-medium">Empathetic</span>
                 </div>
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                  <span className="text-sm font-medium text-gray-700">CTA:</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">Soft Call to Action</span>
+                <div className="flex items-center gap-3 p-3 bg-white/10 backdrop-blur rounded-lg">
+                  <span className="text-sm font-medium text-gray-300">CTA:</span>
+                  <span className="px-3 py-1 bg-blue-500 text-white rounded-full text-sm font-medium">Soft Call to Action</span>
                 </div>
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                  <span className="text-sm font-medium text-gray-700">Industry:</span>
-                  <span className="text-sm text-gray-600">Energy → Renewables → Solar</span>
+                <div className="flex items-center gap-3 p-3 bg-white/10 backdrop-blur rounded-lg">
+                  <span className="text-sm font-medium text-gray-300">Industry:</span>
+                  <span className="text-sm text-gray-200">Energy → Renewables → Solar</span>
                 </div>
-                <div className="p-3 bg-gray-50 rounded-lg">
-                  <span className="text-sm font-medium text-gray-700 block mb-2">AI Notes:</span>
-                  <p className="text-sm text-gray-600 italic">"Focus on sustainability and cost savings. Mention our U.S. and India operations..."</p>
+                <div className="p-3 bg-white/10 backdrop-blur rounded-lg">
+                  <span className="text-sm font-medium text-gray-300 block mb-2">AI Notes:</span>
+                  <p className="text-sm text-gray-200 italic">"Focus on sustainability and cost savings. Always mention we serve both residential and commercial clients..."</p>
                 </div>
               </div>
             </div>
@@ -396,7 +609,7 @@ export function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section className="py-24" id="pricing">
+      <section className="py-24 bg-gray-50" id="pricing">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -412,7 +625,7 @@ export function Home() {
               <div
                 key={pack.name}
                 className={`relative bg-white rounded-2xl p-6 border-2 transition-all hover:shadow-lg ${
-                  pack.popular ? 'border-purple-500 shadow-lg' : 'border-gray-200'
+                  pack.popular ? 'border-purple-500 shadow-lg scale-105' : 'border-gray-200'
                 }`}
               >
                 {pack.popular && (
@@ -445,7 +658,7 @@ export function Home() {
           </div>
 
           {/* Token Usage Guide */}
-          <div className="bg-gray-50 rounded-2xl p-8">
+          <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
             <h3 className="font-bold text-gray-900 mb-6 text-center">What Can You Create?</h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
               <div>
@@ -469,38 +682,26 @@ export function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-gray-900 text-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold mb-1">5</div>
-              <div className="text-gray-400">Platforms Supported</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-1">50+</div>
-              <div className="text-gray-400">Industries Covered</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-1">&lt;60s</div>
-              <div className="text-gray-400">Avg. Post Creation</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-1">24/7</div>
-              <div className="text-gray-400">AI Availability</div>
-            </div>
-          </div>
+      {/* Value Proposition Banner */}
+      <section className="py-16 bg-gradient-to-r from-gray-900 via-purple-900 to-gray-900 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-2xl sm:text-3xl font-medium leading-relaxed">
+            "Stop staring at a blank screen. Just tell the AI what you want to say, and watch your ideas become professional posts."
+          </p>
+          <p className="mt-6 text-gray-400 text-lg">
+            From idea to published post — powered by AI that understands your industry
+          </p>
         </div>
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-24">
+      <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center gap-3 mb-6">
             <img
               src="/socialway-icon.svg"
               alt=""
-              className="w-12 h-12"
+              className="w-14 h-14"
               style={{ borderRadius: '30%' }}
             />
           </div>

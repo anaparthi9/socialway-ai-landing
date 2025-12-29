@@ -83,7 +83,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="mailto:hello@socialway.ai" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a href="mailto:support@socialway.ai" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Contact
                 </a>
               </li>
