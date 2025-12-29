@@ -11,9 +11,8 @@ import {
 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 
-// Cloudflare Turnstile site key - replace with your actual site key in production
-// Test keys: https://developers.cloudflare.com/turnstile/troubleshooting/testing/
-const TURNSTILE_SITE_KEY = '1x00000000000000000000AA'; // Visible test key (always passes)
+// Cloudflare Turnstile site key
+const TURNSTILE_SITE_KEY = '0x4AAAAAACJfIv8cL2y3aWN0';
 
 declare global {
   interface Window {
