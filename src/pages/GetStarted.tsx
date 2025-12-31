@@ -44,7 +44,7 @@ export function GetStarted() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [signupSuccess, setSignupSuccess] = useState(false);
-  const [countdown, setCountdown] = useState(5);
+  const [countdown, setCountdown] = useState(30);
 
   // Countdown and redirect after successful signup
   useEffect(() => {
@@ -207,7 +207,7 @@ export function GetStarted() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Zap size={16} className="text-purple-500" />
-                  <span>Free tokens included</span>
+                  <span>Tokens included</span>
                 </div>
               </div>
             </div>
@@ -260,7 +260,7 @@ export function GetStarted() {
                   <>
                     <div className="text-center mb-6">
                       <h2 className="text-2xl font-bold text-gray-900 mb-2">Join the Beta</h2>
-                      <p className="text-gray-600">Create your free account to get started</p>
+                      <p className="text-gray-600">Create your account to get started</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
@@ -334,7 +334,7 @@ export function GetStarted() {
                           'Creating Account...'
                         ) : (
                           <>
-                            Create Free Account
+                            Create Account
                             <ArrowRight size={20} />
                           </>
                         )}
@@ -494,11 +494,11 @@ export function GetStarted() {
               boxShadow: '0 4px 25px rgba(99, 102, 241, 0.4)',
             }}
           >
-            Get Started Free
+            Get Started
             <ArrowRight size={20} />
           </button>
           <p className="text-sm text-gray-500 mt-4">
-            No credit card required • Free tokens included
+            No credit card required
           </p>
         </div>
       </section>
