@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -82,8 +82,8 @@ export function Header() {
                 boxShadow: '0 4px 15px rgba(99, 102, 241, 0.3)',
               }}
             >
-              <Sparkles size={14} className="group-hover:rotate-12 transition-transform" />
               Start Free
+              <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
             </a>
           </div>
 
@@ -142,8 +142,8 @@ export function Header() {
                 background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
               }}
             >
-              <Sparkles size={14} />
               Start Free
+              <ArrowRight size={14} />
             </a>
           </div>
         </div>

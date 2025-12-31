@@ -143,8 +143,8 @@ export function Home() {
                   boxShadow: '0 4px 20px rgba(99, 102, 241, 0.35)',
                 }}
               >
-                <Sparkles size={18} />
                 Start Creating Free
+                <ArrowRight size={18} />
               </a>
               <a
                 href="#see-it-action"
