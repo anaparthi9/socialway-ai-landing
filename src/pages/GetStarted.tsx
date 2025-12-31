@@ -12,8 +12,10 @@ import {
   Users,
   Eye,
   EyeOff,
+  Mail,
+  CheckCircle,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 
 // Declare gtag for TypeScript
@@ -41,6 +43,18 @@ export function GetStarted() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const [signupSuccess, setSignupSuccess] = useState(false);
+  const [countdown, setCountdown] = useState(5);
+
+  // Countdown and redirect after successful signup
+  useEffect(() => {
+    if (signupSuccess && countdown > 0) {
+      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+      return () => clearTimeout(timer);
+    } else if (signupSuccess && countdown === 0) {
+      window.location.href = 'https://hub.socialway.ai/login';
+    }
+  }, [signupSuccess, countdown]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -94,12 +108,11 @@ export function GetStarted() {
 
       // Check if email confirmation is required
       if (data.user && !data.session) {
-        // Email confirmation required - show success message
-        setError('');
-        alert('Account created! Please check your email to confirm your account, then sign in at hub.socialway.ai');
-        window.location.href = 'https://hub.socialway.ai/login';
+        // Email confirmation required - show success state
+        setSignupSuccess(true);
+        setIsSubmitting(false);
       } else if (data.session) {
-        // User is logged in - redirect to hub
+        // User is logged in - redirect to hub immediately
         window.location.href = 'https://hub.socialway.ai';
       }
     } catch {
@@ -202,104 +215,149 @@ export function GetStarted() {
             {/* Right Column - Signup Form */}
             <div id="signup-form" className="scroll-mt-24">
               <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
-                <div className="text-center mb-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Join the Beta</h2>
-                  <p className="text-gray-600">Create your free account to get started</p>
-                </div>
-
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  {error && (
-                    <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
-                      {error}
+                {signupSuccess ? (
+                  // Success State
+                  <div className="text-center py-6">
+                    <div
+                      className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
+                      style={{ background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1))' }}
+                    >
+                      <CheckCircle size={40} className="text-green-500" />
                     </div>
-                  )}
+                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Account Created!</h2>
+                    <p className="text-gray-600 mb-6">
+                      We've sent a confirmation email to<br />
+                      <span className="font-semibold text-gray-900">{formData.email}</span>
+                    </p>
 
-                  <div>
-                    <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      id="fullName"
-                      value={formData.fullName}
-                      onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
-                      placeholder="John Smith"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
-                      placeholder="john@company.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                      Password
-                    </label>
-                    <div className="relative">
-                      <input
-                        type={showPassword ? 'text' : 'password'}
-                        id="password"
-                        value={formData.password}
-                        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all pr-12"
-                        placeholder="Min. 8 characters"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                      >
-                        {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                      </button>
+                    <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6">
+                      <div className="flex items-center justify-center gap-2 text-blue-700 mb-2">
+                        <Mail size={20} />
+                        <span className="font-medium">Check your inbox</span>
+                      </div>
+                      <p className="text-sm text-blue-600">
+                        Click the confirmation link in your email to activate your account
+                      </p>
                     </div>
-                  </div>
 
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-4 rounded-lg text-white font-semibold text-lg transition-all hover:scale-[1.01] hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                    style={{
-                      background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
-                      boxShadow: '0 4px 15px rgba(99, 102, 241, 0.3)',
-                    }}
-                  >
-                    {isSubmitting ? (
-                      'Creating Account...'
-                    ) : (
-                      <>
-                        Create Free Account
-                        <ArrowRight size={20} />
-                      </>
-                    )}
-                  </button>
+                    <div className="text-sm text-gray-500 mb-4">
+                      Redirecting to sign in page in <span className="font-semibold text-purple-600">{countdown}</span> seconds...
+                    </div>
 
-                  <p className="text-xs text-gray-500 text-center">
-                    By signing up, you agree to our{' '}
-                    <a href="/terms" className="text-purple-600 hover:underline">Terms of Service</a>{' '}
-                    and{' '}
-                    <a href="/privacy" className="text-purple-600 hover:underline">Privacy Policy</a>
-                  </p>
-                </form>
-
-                <div className="mt-6 pt-6 border-t border-gray-100 text-center">
-                  <p className="text-sm text-gray-600">
-                    Already have an account?{' '}
-                    <a href="https://hub.socialway.ai/login" className="text-purple-600 font-medium hover:underline">
-                      Sign in
+                    <a
+                      href="https://hub.socialway.ai/login"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-white font-semibold transition-all hover:scale-[1.02]"
+                      style={{
+                        background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
+                      }}
+                    >
+                      Go to Sign In
+                      <ArrowRight size={18} />
                     </a>
-                  </p>
-                </div>
+                  </div>
+                ) : (
+                  // Form State
+                  <>
+                    <div className="text-center mb-6">
+                      <h2 className="text-2xl font-bold text-gray-900 mb-2">Join the Beta</h2>
+                      <p className="text-gray-600">Create your free account to get started</p>
+                    </div>
+
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      {error && (
+                        <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
+                          {error}
+                        </div>
+                      )}
+
+                      <div>
+                        <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
+                          Full Name
+                        </label>
+                        <input
+                          type="text"
+                          id="fullName"
+                          value={formData.fullName}
+                          onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+                          placeholder="John Smith"
+                        />
+                      </div>
+
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                          Email Address
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+                          placeholder="john@company.com"
+                        />
+                      </div>
+
+                      <div>
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                          Password
+                        </label>
+                        <div className="relative">
+                          <input
+                            type={showPassword ? 'text' : 'password'}
+                            id="password"
+                            value={formData.password}
+                            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all pr-12"
+                            placeholder="Min. 8 characters"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                          >
+                            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                          </button>
+                        </div>
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full py-4 rounded-lg text-white font-semibold text-lg transition-all hover:scale-[1.01] hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        style={{
+                          background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
+                          boxShadow: '0 4px 15px rgba(99, 102, 241, 0.3)',
+                        }}
+                      >
+                        {isSubmitting ? (
+                          'Creating Account...'
+                        ) : (
+                          <>
+                            Create Free Account
+                            <ArrowRight size={20} />
+                          </>
+                        )}
+                      </button>
+
+                      <p className="text-xs text-gray-500 text-center">
+                        By signing up, you agree to our{' '}
+                        <a href="/terms" className="text-purple-600 hover:underline">Terms of Service</a>{' '}
+                        and{' '}
+                        <a href="/privacy" className="text-purple-600 hover:underline">Privacy Policy</a>
+                      </p>
+                    </form>
+
+                    <div className="mt-6 pt-6 border-t border-gray-100 text-center">
+                      <p className="text-sm text-gray-600">
+                        Already have an account?{' '}
+                        <a href="https://hub.socialway.ai/login" className="text-purple-600 font-medium hover:underline">
+                          Sign in
+                        </a>
+                      </p>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
