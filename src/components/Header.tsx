@@ -38,15 +38,9 @@ export function Header() {
       <nav className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group">
-            <img
-              src="/socialway-icon.svg"
-              alt="Socialway AI"
-              className="w-8 h-8 transition-transform duration-300 group-hover:scale-105"
-              style={{ borderRadius: '22%' }}
-            />
+          <Link to="/" className="flex items-center gap-3 group">
             <span
-              className="text-xl font-bold tracking-tight"
+              className="text-2xl font-bold tracking-tight"
               style={{
                 background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
                 WebkitBackgroundClip: 'text',
@@ -56,6 +50,12 @@ export function Header() {
             >
               Socialway AI
             </span>
+            <img
+              src="/socialway-icon.svg"
+              alt=""
+              className="w-9 h-9 transition-transform duration-300 group-hover:scale-105"
+              style={{ borderRadius: '25%' }}
+            />
           </Link>
 
           {/* Desktop Navigation */}

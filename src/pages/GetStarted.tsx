@@ -130,14 +130,24 @@ export function GetStarted() {
       {/* Minimal Header - Logo Only */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2">
+          <a href="/" className="flex items-center gap-3">
+            <span
+              className="text-2xl font-bold tracking-tight"
+              style={{
+                background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              Socialway AI
+            </span>
             <img
               src="/socialway-icon.svg"
-              alt="SocialWay.ai"
-              className="w-8 h-8"
-              style={{ borderRadius: '20%' }}
+              alt=""
+              className="w-9 h-9"
+              style={{ borderRadius: '25%' }}
             />
-            <span className="text-xl font-bold text-gray-900">SocialWay.ai</span>
           </a>
           <span className="text-sm text-purple-600 font-medium bg-purple-50 px-3 py-1 rounded-full">
             Beta Access
@@ -508,13 +518,24 @@ export function GetStarted() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
+              <span
+                className="text-lg font-bold tracking-tight"
+                style={{
+                  background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                Socialway AI
+              </span>
               <img
                 src="/socialway-icon.svg"
-                alt="SocialWay.ai"
-                className="w-6 h-6"
-                style={{ borderRadius: '20%' }}
+                alt=""
+                className="w-7 h-7"
+                style={{ borderRadius: '25%' }}
               />
-              <span className="text-sm text-gray-500">© 2025 SocialWay.ai</span>
+              <span className="text-sm text-gray-500 ml-2">© 2025</span>
             </div>
             <div className="flex items-center gap-6 text-sm">
               <a href="/privacy" className="text-gray-500 hover:text-gray-700">Privacy</a>
