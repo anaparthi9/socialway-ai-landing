@@ -14,6 +14,7 @@ import {
   EyeOff,
 } from 'lucide-react';
 import { useState } from 'react';
+import { supabase } from '../lib/supabase';
 
 // Declare gtag for TypeScript
 declare global {
@@ -60,37 +61,46 @@ export function GetStarted() {
     }
 
     try {
+      // Create user account with Supabase Auth
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+          data: {
+            full_name: formData.fullName,
+            source: 'landing-page',
+          },
+          emailRedirectTo: 'https://hub.socialway.ai',
+        },
+      });
+
+      if (signUpError) {
+        // Handle specific errors
+        if (signUpError.message.includes('already registered')) {
+          setError('This email is already registered. Please sign in instead.');
+        } else {
+          setError(signUpError.message);
+        }
+        setIsSubmitting(false);
+        return;
+      }
+
       // Track conversion in Google Ads
       if (window.gtag) {
         window.gtag('event', 'conversion', {
           'send_to': 'AW-17838754689/signup',
-          'event_callback': () => {
-            // Redirect after tracking
-            const params = new URLSearchParams({
-              name: formData.fullName,
-              email: formData.email,
-              source: 'landing-page',
-            });
-            window.location.href = `https://hub.socialway.ai/signup?${params.toString()}`;
-          }
         });
-        // Fallback redirect if callback doesn't fire within 1 second
-        setTimeout(() => {
-          const params = new URLSearchParams({
-            name: formData.fullName,
-            email: formData.email,
-            source: 'landing-page',
-          });
-          window.location.href = `https://hub.socialway.ai/signup?${params.toString()}`;
-        }, 1000);
-      } else {
-        // No gtag, redirect directly
-        const params = new URLSearchParams({
-          name: formData.fullName,
-          email: formData.email,
-          source: 'landing-page',
-        });
-        window.location.href = `https://hub.socialway.ai/signup?${params.toString()}`;
+      }
+
+      // Check if email confirmation is required
+      if (data.user && !data.session) {
+        // Email confirmation required - show success message
+        setError('');
+        alert('Account created! Please check your email to confirm your account, then sign in at hub.socialway.ai');
+        window.location.href = 'https://hub.socialway.ai/login';
+      } else if (data.session) {
+        // User is logged in - redirect to hub
+        window.location.href = 'https://hub.socialway.ai';
       }
     } catch {
       setError('Something went wrong. Please try again.');
