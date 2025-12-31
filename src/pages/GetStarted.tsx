@@ -15,6 +15,13 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 
+// Declare gtag for TypeScript
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 // Platform data
 const platforms = [
   { icon: Linkedin, name: 'LinkedIn', color: '#0A66C2' },
@@ -53,13 +60,38 @@ export function GetStarted() {
     }
 
     try {
-      // Redirect to hub.socialway.ai with signup data
-      const params = new URLSearchParams({
-        name: formData.fullName,
-        email: formData.email,
-        source: 'landing-page',
-      });
-      window.location.href = `https://hub.socialway.ai/signup?${params.toString()}`;
+      // Track conversion in Google Ads
+      if (window.gtag) {
+        window.gtag('event', 'conversion', {
+          'send_to': 'AW-17838754689/signup',
+          'event_callback': () => {
+            // Redirect after tracking
+            const params = new URLSearchParams({
+              name: formData.fullName,
+              email: formData.email,
+              source: 'landing-page',
+            });
+            window.location.href = `https://hub.socialway.ai/signup?${params.toString()}`;
+          }
+        });
+        // Fallback redirect if callback doesn't fire within 1 second
+        setTimeout(() => {
+          const params = new URLSearchParams({
+            name: formData.fullName,
+            email: formData.email,
+            source: 'landing-page',
+          });
+          window.location.href = `https://hub.socialway.ai/signup?${params.toString()}`;
+        }, 1000);
+      } else {
+        // No gtag, redirect directly
+        const params = new URLSearchParams({
+          name: formData.fullName,
+          email: formData.email,
+          source: 'landing-page',
+        });
+        window.location.href = `https://hub.socialway.ai/signup?${params.toString()}`;
+      }
     } catch {
       setError('Something went wrong. Please try again.');
       setIsSubmitting(false);
