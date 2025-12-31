@@ -132,7 +132,7 @@ export function GetStarted() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <a href="/" className="flex items-center gap-3">
             <span
-              className="text-2xl font-bold tracking-tight"
+              className="text-3xl font-bold tracking-tight"
               style={{
                 background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
                 WebkitBackgroundClip: 'text',
@@ -145,7 +145,7 @@ export function GetStarted() {
             <img
               src="/socialway-icon.svg"
               alt=""
-              className="w-9 h-9"
+              className="w-11 h-11"
               style={{ borderRadius: '25%' }}
             />
           </a>
@@ -519,7 +519,7 @@ export function GetStarted() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
               <span
-                className="text-lg font-bold tracking-tight"
+                className="text-xl font-bold tracking-tight"
                 style={{
                   background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
                   WebkitBackgroundClip: 'text',
@@ -532,7 +532,7 @@ export function GetStarted() {
               <img
                 src="/socialway-icon.svg"
                 alt=""
-                className="w-7 h-7"
+                className="w-8 h-8"
                 style={{ borderRadius: '25%' }}
               />
               <span className="text-sm text-gray-500 ml-2">© 2025</span>

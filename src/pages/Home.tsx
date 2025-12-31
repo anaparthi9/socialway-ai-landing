@@ -697,9 +697,9 @@ export function Home() {
       {/* Final CTA Section */}
       <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center gap-3 mb-6">
+          <div className="flex items-center justify-center gap-4 mb-6">
             <span
-              className="text-3xl font-bold tracking-tight"
+              className="text-4xl font-bold tracking-tight"
               style={{
                 background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
                 WebkitBackgroundClip: 'text',
@@ -712,7 +712,7 @@ export function Home() {
             <img
               src="/socialway-icon.svg"
               alt=""
-              className="w-10 h-10"
+              className="w-12 h-12"
               style={{ borderRadius: '25%' }}
             />
           </div>

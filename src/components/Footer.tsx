@@ -10,7 +10,7 @@ export function Footer() {
           <div className="col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-4">
               <span
-                className="text-2xl font-bold tracking-tight"
+                className="text-3xl font-bold tracking-tight"
                 style={{
                   background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
                   WebkitBackgroundClip: 'text',
@@ -23,7 +23,7 @@ export function Footer() {
               <img
                 src="/socialway-icon.svg"
                 alt=""
-                className="w-9 h-9"
+                className="w-11 h-11"
                 style={{ borderRadius: '25%' }}
               />
             </Link>

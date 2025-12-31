@@ -40,7 +40,7 @@ export function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
             <span
-              className="text-2xl font-bold tracking-tight"
+              className="text-3xl font-bold tracking-tight"
               style={{
                 background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
                 WebkitBackgroundClip: 'text',
@@ -53,7 +53,7 @@ export function Header() {
             <img
               src="/socialway-icon.svg"
               alt=""
-              className="w-9 h-9 transition-transform duration-300 group-hover:scale-105"
+              className="w-11 h-11 transition-transform duration-300 group-hover:scale-105"
               style={{ borderRadius: '25%' }}
             />
           </Link>
