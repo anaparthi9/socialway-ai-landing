@@ -92,7 +92,7 @@ export function Terms() {
               If you have questions about these Terms, please contact us at:
             </p>
             <p className="text-gray-600 mt-2">
-              Email: <a href="mailto:legal@socialway.ai" className="text-blue-600 hover:underline">legal@socialway.ai</a>
+              Email: <a href="mailto:support@socialway.ai" className="text-blue-600 hover:underline">support@socialway.ai</a>
             </p>
           </section>
         </div>

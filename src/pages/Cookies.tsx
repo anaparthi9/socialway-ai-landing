@@ -96,7 +96,7 @@ export function Cookies() {
               If you have questions about our use of cookies, please contact us at:
             </p>
             <p className="text-gray-600 mt-2">
-              Email: <a href="mailto:privacy@socialway.ai" className="text-blue-600 hover:underline">privacy@socialway.ai</a>
+              Email: <a href="mailto:support@socialway.ai" className="text-blue-600 hover:underline">support@socialway.ai</a>
             </p>
           </section>
         </div>

@@ -28,7 +28,7 @@ export function DataDeletion() {
                   <h3 className="font-semibold text-gray-900">Email Request</h3>
                 </div>
                 <p className="text-gray-600 text-sm">
-                  Send an email to <a href="mailto:privacy@socialway.ai" className="text-blue-600 hover:underline">privacy@socialway.ai</a> with the subject line "Data Deletion Request" and include your account email address.
+                  Send an email to <a href="mailto:support@socialway.ai" className="text-blue-600 hover:underline">support@socialway.ai</a> with the subject line "Data Deletion Request" and include your account email address.
                 </p>
               </div>
 
@@ -98,7 +98,7 @@ export function DataDeletion() {
               If you have questions about data deletion or need assistance, please contact us at:
             </p>
             <p className="text-gray-600 mt-2">
-              Email: <a href="mailto:privacy@socialway.ai" className="text-blue-600 hover:underline">privacy@socialway.ai</a>
+              Email: <a href="mailto:support@socialway.ai" className="text-blue-600 hover:underline">support@socialway.ai</a>
             </p>
           </section>
         </div>
