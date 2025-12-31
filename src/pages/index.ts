@@ -9,3 +9,4 @@ export { DataDeletion } from './DataDeletion';
 export { Cookies } from './Cookies';
 export { Blog } from './Blog';
 export { Reels } from './Reels';
+export { GetStarted } from './GetStarted';

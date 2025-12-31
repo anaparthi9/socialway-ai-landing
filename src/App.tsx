@@ -11,13 +11,18 @@ import {
   DataDeletion,
   Cookies,
   Blog,
-  Reels
+  Reels,
+  GetStarted
 } from './pages';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Standalone landing page (no main nav for focused conversion) */}
+        <Route path="/get-started" element={<GetStarted />} />
+
+        {/* Main site with standard layout */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/features" element={<Features />} />
